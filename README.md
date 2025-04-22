@@ -4,27 +4,27 @@
 
 ## 1. Problem Statement
 
-The goal of this project is to enable a robot to autonomously follow a leader robot[cite: 1, 2]. This is achieved by using a marker-based tracking system, specifically ArUco markers, to allow the follower robot to maintain a constant distance and track the leader's movements[cite: 2]. The system must address key challenges such as leader detection, maintaining a desired following distance, dynamically adjusting its path to follow the leader, and avoiding collisions[cite: 2].
+The goal of this project is to enable a robot to autonomously follow a leader robot. This is achieved by using a marker-based tracking system, specifically ArUco markers, to allow the follower robot to maintain a constant distance and track the leader's movements[cite: 2]. The system must address key challenges such as leader detection, maintaining a desired following distance, dynamically adjusting its path to follow the leader, and avoiding collisions[cite: 2].
 
 ## 2. Method Used
 
-We implemented an ArUco marker-based tracking system within the ROS2 framework[cite: 1]. This approach involves the following:
+We implemented an ArUco marker-based tracking system within the ROS2 framework. This approach involves the following:
 
-* **ArUco Marker Detection:** OpenCV is used to detect ArUco markers attached to the leader robot. The follower robot's camera captures images, and the system processes these images to identify the markers and determine the leader's pose (position and orientation)[cite: 4].
-* **Pose Estimation:** By analyzing the marker's position in the camera frame, we estimate the leader robot's pose relative to the follower robot. This involves calculating both the translational and rotational vectors[cite: 4].
-* **Control System:** A control system, potentially a PZD controller, is used to process the pose information and generate the necessary motor commands for the follower robot to maintain the desired following distance and match the leader's movements[cite: 4].
-* **ROS2 Communication:** ROS2 is used for communication between different software components of the system, such as camera input, marker detection, control algorithms, and motor control[cite: 1].
+* **ArUco Marker Detection:** OpenCV is used to detect ArUco markers attached to the leader robot. The follower robot's camera captures images, and the system processes these images to identify the markers and determine the leader's pose (position and orientation).
+* **Pose Estimation:** By analyzing the marker's position in the camera frame, we estimate the leader robot's pose relative to the follower robot. This involves calculating both the translational and rotational vectors.
+* **Control System:** A control system, potentially a PZD controller, is used to process the pose information and generate the necessary motor commands for the follower robot to maintain the desired following distance and match the leader's movements.
+* **ROS2 Communication:** ROS2 is used for communication between different software components of the system, such as camera input, marker detection, control algorithms, and motor control.
 
 ## 3. Implementation Details
 
 The implementation of the autonomous follow-the-leader system involves several key steps:
 
 1.  **Marker Setup:** ArUco markers are attached to the leader robot in a configuration that allows for robust detection and pose estimation from various angles.
-2.  **Camera Calibration:** The camera of the follower robot is calibrated to obtain intrinsic parameters (focal length, etc.) necessary for accurate pose estimation[cite: 4].
+2.  **Camera Calibration:** The camera of the follower robot is calibrated to obtain intrinsic parameters (focal length, etc.) necessary for accurate pose estimation.
 3.  **Marker Detection and Pose Estimation:**
     * The follower robot's camera captures images of the environment.
     * OpenCV functions are used to detect ArUco markers in the images.
-    * For each detected marker, the system calculates the translation and rotation vectors, representing the leader's pose relative to the follower[cite: 4].
+    * For each detected marker, the system calculates the translation and rotation vectors, representing the leader's pose relative to the follower.
 4.  **Control Algorithm:**
     * The pose information is fed into a control algorithm (e.g., a PZD controller).
     * The controller calculates the required linear and angular velocities for the follower robot to:
